@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import config from './firebase/config';
+import config from './firebse/Config';
+
 class Login extends Component {
   constructor(props) {
     super(props);
