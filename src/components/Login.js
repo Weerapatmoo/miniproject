@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import auth from '../firebase';
+import auth from '/firebase';
 
-const Login = ({ setSession }) => {
+  const Login = ({ setSession }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -59,7 +59,8 @@ const Login = ({ setSession }) => {
   };
 
   return (
-    <div>
+    <div className = "login">
+
       <input type="email" placeholder="Email" onChange={handleUsername} />
       <input type="password" placeholder="Password" onChange={handlePassword} />
 
