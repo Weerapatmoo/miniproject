@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import config from './firebase/config';
+import fig from './firebase/Config';
 
 
 class Home extends Component {
@@ -10,7 +10,7 @@ class Home extends Component {
 
 
     logout() {
-        config.auth().signOut();
+        fig.auth().signOut();
     }
 
     render() {

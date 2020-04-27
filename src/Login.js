@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import config from './firebse/Config';
+import fig from './firebase/Config';
 
 class Login extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class Login extends Component {
 
   login(e) {
     e.preventDefault();
-    config.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+    fig.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
     }).catch((error) => {
         console.log(error);
       });
@@ -27,7 +27,7 @@ class Login extends Component {
 
   signup(e){
     e.preventDefault();
-    config.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+    fig.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
     }).then((u)=>{console.log(u)})
     .catch((error) => {
         console.log(error);
