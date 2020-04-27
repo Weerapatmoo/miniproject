@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Login from './components/Login';
-import config from './firebase/config';
-
 import './App.css';
+
+import config from './firebase/config';
 import Home from './Home';
+import Login from './components/Login';
 
 class App extends Component {
   constructor(props) {
@@ -13,9 +13,11 @@ class App extends Component {
     });
     this.authListener = this.authListener.bind(this);
   }
+
   componentDidMount() {
     this.authListener();
   }
+
   authListener() {
     config.auth().onAuthStateChanged((user) => {
      // console.log(user);
@@ -30,13 +32,10 @@ class App extends Component {
   }
   render() {
     return (
-      
       <div className="App">
-          {this.state.user ?  ( < Home/>) : (< Login />)};
+        {this.state.user ?  ( < Home/>) : (< Login />)};
       </div>
-      
-    );
+    )
   }
 }
-
 export default App;

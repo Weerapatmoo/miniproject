@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
-import config from './firebase';
-import './App.css';
+import config from './firebase/config';
+
 
 class Home extends Component {
-  constructor(props) {
-      super(props);
-      this.logout = this.logout.bind(this);
-  }
-  
-  logout() {
-    config.auth().signOut();
-}
-render() {
+    constructor(props) {
+        super(props);
+        this.logout = this.logout.bind(this);
+    }
+
+
+    logout() {
+        config.auth().signOut();
+    }
+
+    render() {
 return (
 
     <div className="Home">
         <h1>CCTV</h1>
+        
         <button type="button" onClick={this.logout}>Logout</button>
         
     </div>
@@ -24,8 +27,4 @@ return (
 }
 }
   
-
-
-
-
 export default Home

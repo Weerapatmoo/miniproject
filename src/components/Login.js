@@ -1,78 +1,55 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
+import config from './firebase/config';
+class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.login = this.login.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.signup = this.signup.bind(this);
+    this.state = {
+      email: '',
+      password: ''
+    };
+  }
 
-import auth from '/firebase';
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
 
-  const Login = ({ setSession }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleLogin = async () => {
-    try {
-      const response = await auth.signInWithEmailAndPassword(
-        username,
-        password
-      );
-
-      const { user } = response;
-
-      setSession({
-        isLoggedIn: true,
-        currentUser: user
+  login(e) {
+    e.preventDefault();
+    config.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+    }).catch((error) => {
+        console.log(error);
       });
-    } catch (error) {
-      setSession({
-        isLoggedIn: false,
-        currentUser: null,
-        errorMessage: error.message
-      });
-    }
-  };
+  }
 
-  const handleRegister = async () => {
-    try {
-      const response = await auth.createUserWithEmailAndPassword(
-        username,
-        password
-      );
+  signup(e){
+    e.preventDefault();
+    config.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+    }).then((u)=>{console.log(u)})
+    .catch((error) => {
+        console.log(error);
+      })
+  }
 
-      const { user } = response;
-
-      setSession({
-        isLoggedIn: true,
-        currentUser: user
-      });
-    } catch (error) {
-      setSession({
-        isLoggedIn: false,
-        currentUser: null,
-        errorMessage: error.essage
-      });
-    }
-  };
-
-  const handleUsername = event => {
-    setUsername(event.target.value);
-  };
-
-  const handlePassword = event => {
-    setPassword(event.target.value);
-  };
-
+  render() {
   return (
     <div className = "login">
 
-      <input type="email" placeholder="Email" onChange={handleUsername} />
-      <input type="password" placeholder="Password" onChange={handlePassword} />
+      <input type="email" placeholder="Email" onChange={this.handleChange} />
+      <input type="password" placeholder="Password" onChange={this.handleChange} />
 
-      <button type="button" onClick={handleLogin}>
+      <button type="button" onClick={this.login}>
         Login
       </button>
 
-      <button type="button" onClick={handleRegister}>
+      <button type="button" onClick={this.signup}>
         Register
       </button>
     </div>
   );
 };
+}
 
 export default Login

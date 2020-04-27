@@ -1,5 +1,6 @@
-import firebase from 'firebase';  
-  const configfire = {
+
+ import firebase from 'firebase'; 
+ const firebaseConfig = {
     apiKey: "AIzaSyCltPds5jVQCfuyxR3HrAGj78SpCwDnVJo",
     authDomain: "mini-project-528a4.firebaseapp.com",
     databaseURL: "https://mini-project-528a4.firebaseio.com",
@@ -9,5 +10,6 @@ import firebase from 'firebase';
     appId: "1:293438143416:web:cd373a2070e35799ae2d4d",
     measurementId: "G-TLYPPTHH2F"
 };
-const config = firebase.initializeApp(configfire);
+
+const config = firebase.initializeApp(config);
 export default config;
