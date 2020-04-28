@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
-import provider ,{auth}  from './firebase/firefacabook';
+import firebase from 'firebase'; 
+
+
+
+
+const auth = firebase.auth
+const provider = new firebase.auth.FacebookAuthProvider();
 
 class Facabook extends Component {
   constructor(props){
-    super(props);
-    this.state = {user:null}
+  super(props);
+  this.state = {user:null}
   } 
   login = () => {
     var that = this;
@@ -17,28 +23,17 @@ class Facabook extends Component {
       var errorMessage = error.message;
     });
   }
-  logout = () => {
-    var that = this;
-    auth().signOut().then(function() {
-      that.setState({user: null});
-    }).catch(function(error) {
-    });
-  }
+  
   renderName = () => {
     const {user} = this.state
-    if(user)
-      return (<div><img src={`${user.photoURL}`} />{user ? `Hi, ${user.displayName}!` : 'Hi!'}</div>)
+    
   }
   render() {
     return (
       <div className="App">
+        
           {this.renderName()}
-          <button onClick={this.login}>
-            Login with Facebook
-          </button>
-          <button onClick={this.logout}>
-            Logout
-          </button>
+          <button onClick={this.login}>Login with Facebook</button>
       </div>
     );
   }

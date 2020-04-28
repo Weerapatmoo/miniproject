@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import fig from './firebase/Config';
+import fig from './firebase/fig';
 import Home from './Home';
 import Login from './Login';
-import Facabook from './Facabook';
+
+
 
 class App extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class App extends Component {
     });
     this.authListener = this.authListener.bind(this);
   }
-  
+
 
   componentDidMount() {
     this.authListener();
@@ -22,10 +23,10 @@ class App extends Component {
 
   authListener() {
     fig.auth().onAuthStateChanged((user) => {
-     // console.log(user);
+      // console.log(user);
       if (user) {
         this.setState({ user });
-       // localStorage.setItem('user', user.uid);
+        // localStorage.setItem('user', user.uid);
       } else {
         this.setState({ user: null });
         //localStorage.removeItem('user');
@@ -35,8 +36,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.user ?  ( < Home/>) : (< Login />)}
-        {this.state.user ?  ( < Home/>) : (< Facabook />)}
+        {this.state.user ? (< Home />) : (< Login />)}
+        
       </div>
     )
   }

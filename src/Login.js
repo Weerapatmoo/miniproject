@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import fig from './firebase/Config';
+import fig from './firebase/fig';
+import Facabook from './Facabook';
 
 class Login extends Component {
   constructor(props) {
@@ -19,38 +20,37 @@ class Login extends Component {
 
   login(e) {
     e.preventDefault();
-    fig.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+    fig.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
     }).catch((error) => {
-        console.log(error);
-      });
+      console.log(error);
+    });
   }
 
-  signup(e){
+  signup(e) {
     e.preventDefault();
-    fig.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
-    }).then((u)=>{console.log(u)})
-    .catch((error) => {
+    fig.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u) => {
+    }).then((u) => { console.log(u) })
+      .catch((error) => {
         console.log(error);
       })
   }
 
   render() {
-  return (
-    <div className = "login">
+    return (
+      <div className="login">
+        <main role="main" className="container" style={{ marginTop: 200 }}>
+          
+          <input type="email" placeholder="Email" onChange={this.handleChange} /><br></br>
+          <input type="password" placeholder="Password" onChange={this.handleChange} /><br></br>
 
-      <input type="email" placeholder="Email" onChange={this.handleChange} />
-      <input type="password" placeholder="Password" onChange={this.handleChange} />
+          <button type="button" onClick={this.login}>Login</button>
 
-      <button type="button" onClick={this.login}>
-        Login
-      </button>
-
-      <button type="button" onClick={this.signup}>
-        Register
-      </button>
-    </div>
-  );
-};
+          <button type="button" onClick={this.signup}>Register</button>
+        </main>
+        {(< Facabook />)}
+      </div>
+    );
+  };
 }
 
 export default Login
