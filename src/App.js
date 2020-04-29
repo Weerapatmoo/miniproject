@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-
-import fig from './firebase/fig';
-import Home from './Home';
-import Login from './Login';
+import config from './firebase/config';
+import Home from './components/Home';
+import Login from './components/Login';
 
 
 
@@ -22,7 +21,7 @@ class App extends Component {
   }
 
   authListener() {
-    fig.auth().onAuthStateChanged((user) => {
+    config.auth().onAuthStateChanged((user) => {
       // console.log(user);
       if (user) {
         this.setState({ user });
@@ -37,6 +36,7 @@ class App extends Component {
     return (
       <div className="App">
         {this.state.user ? (< Home />) : (< Login />)}
+        
         
       </div>
     )

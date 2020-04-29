@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Worktable extends Component{
-
-  render(){
+function Table(){
 return(
     <div className="has-text-centered">
       <section class="hero is-primary">
@@ -13,5 +11,5 @@ return(
     </div>
   )
 }
-}
-export default Worktable 
+
+export default Table 
