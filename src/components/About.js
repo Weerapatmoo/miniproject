@@ -1,8 +1,11 @@
 import React from 'react'
+import NavLink from './NavLink'
 
 function About() {
-  
-    return (
+
+  return (
+    <div>
+      <NavLink></NavLink>
       <div className="has-text-centered">
         <section class="hero is-danger">
           <div className="container">
@@ -12,7 +15,9 @@ function About() {
           </div>
         </section>
       </div>
-    )
-  }
+    </div>
+
+  )
+}
 
 export default About 

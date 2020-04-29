@@ -1,38 +1,72 @@
-import React, { Component } from 'react';
-import config from '../firebase/config';
-import {BrowserRouter as Router , Switch , Route} from 'react-router-dom'
-import Table from './Table'
-import About from './About'
-import './Home.css';
+import React, { useState, useEffect } from 'react';
+import Login from './Login'
+import auth from '../firebase';
 import NavLink from './NavLink';
 
+const Home = () => {
+  const [session, setSession] = useState({
+    isLoggedIn: false,
+    currentUser: null,
+    errorMessage: null
+  });
+  useEffect(() => {
+    const handleAuth = auth.onAuthStateChanged(user => {
+      if (user) {
+        setSession({
+          isLoggedIn: true,
+          currentUser: user,
+          errorMessage: null
+        });
+      }
+    });
 
+    return () => {
+      handleAuth();
+    };
+  }, []);
+ 
 
-class Home extends Component {
-    constructor(props) {
-        super(props);
-        this.logout = this.logout.bind(this);
-    }
-    logout() {
-        config.auth().signOut();
-    }
-
-    render() {
-        return (
-        <Router>
-        <div className=" ">
-        <NavLink />
-        <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/About" exact component={About} />
-        <Route path="/Table" exact component={Table} />
-        <button type="button" onClick={this.logout}>Logout</button>            
-        </Switch>
+  const handleLogout = () => {
+    auth.signOut().then(response => {
+      setSession({
+        isLoggedIn: false,
+        currentUser: null
+      });
+    });
+  };
+  return (
+    <div>
+      {session.isLoggedIn ? (
+        // หลัง loginเสร็จ
+        <div>
+        <NavLink></NavLink>
+          <span>
+            <h1>Welcome  {session.currentUser && session.currentUser.displayName}</h1>
+            {session.currentUser && session.currentUser.email}
+            <br/>
+            <img
+               width="180px" height="150px"
+              src={session.currentUser && session.currentUser.photoURL}
+            />
+          </span>
+          
+            <br/>
+           
+            <button  
+               
+                onClick={handleLogout}>logout</button>
+          <h1>Hello</h1>
         </div>
-        </Router>
-        
-        );
-    }
-}
 
-export default Home ;
+      ) : (
+        //   ยังไม่ได้ login
+          <div>
+          <Login setSession={setSession} />
+          
+           </div>
+        )}
+
+    </div>
+  )
+}
+export default Home

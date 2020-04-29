@@ -1,45 +1,21 @@
-import React, { Component } from 'react';
-import './App.css';
-import config from './firebase/config';
-import Home from './components/Home';
-import Login from './components/Login';
+import React from 'react'
+import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
+import Home from './components/Home'
+import About from './components/About'
+import Table from './components/Table'
 
+export default function App() {
+  return (
+    <div>
+      <Router>
+      <Switch>
+        <Route path='/' exact component={Home}/>
+        <Route path='/About' exact component={About}/>
+        <Route path='/Table' exact component={Table}/>
+       
+      </Switch>
 
-
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = ({
-      user: {},
-    });
-    this.authListener = this.authListener.bind(this);
-  }
-
-
-  componentDidMount() {
-    this.authListener();
-  }
-
-  authListener() {
-    config.auth().onAuthStateChanged((user) => {
-      // console.log(user);
-      if (user) {
-        this.setState({ user });
-        // localStorage.setItem('user', user.uid);
-      } else {
-        this.setState({ user: null });
-        //localStorage.removeItem('user');
-      }
-    });
-  }
-  render() {
-    return (
-      <div className="App">
-        {this.state.user ? (< Home />) : (< Login />)}
-        
-        
-      </div>
-    )
-  }
+    </Router>
+    </div>
+  )
 }
-export default App;
