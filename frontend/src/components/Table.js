@@ -1,23 +1,22 @@
 import  React, {useState} from 'react';
 import NavLink from './NavLink';
 import InputForm from './InputForm'
-import StaffCard from './StaffCard'
-import StaffList from './StaffList'
-function Table(){
 
-    const [page] = useState('Table')
+import StaffList from './StaffList'
+import './Table.css'
+function Table(){
 
 return(
     
     <div>
       <NavLink/>
-          <h1 className="title">Table</h1>
-          <StaffList page={page}/> 
+          <h1 className="Table">Table</h1>
+          <StaffList/> 
           <br/>
           <InputForm />
           <br/>
         </div>
   )  
-}
+} 
 
 export default Table 

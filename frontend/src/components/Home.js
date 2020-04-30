@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Login from './Login'
 import auth from '../firebase'; 
 import NavLink from './NavLink';
-import StaffCard from './StaffCard';
+
+import './Home.css';
 import StaffList from './StaffList';
+
 
 const Home = () => {
   const [session, setSession] = useState({
@@ -11,6 +13,8 @@ const Home = () => {
     currentUser: null,
     errorMessage: null
   });
+
+  const page = 'Home'
   console.log("session: " + session.isLoggedIn)
   useEffect(() => {
     const handleAuth = auth.onAuthStateChanged(user => {
@@ -42,13 +46,15 @@ const Home = () => {
        {session.isLoggedIn ? (
         // หลัง loginเสร็จ
         <div>
-          <div>
+          <div className = 'Home'>
             <NavLink/>
-              <h1 className="title">Home</h1>
+            <h1>
+            <b>HOME</b></h1>
+              
             </div>
             <div>
-              <StaffList/>
-              <button onClick={handleLogout}>logout</button>
+            <StaffList page={page}/>
+              <button  onClick={handleLogout}>logout</button>
             </div>
         </div>
         

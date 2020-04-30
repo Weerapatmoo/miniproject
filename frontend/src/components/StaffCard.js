@@ -33,64 +33,86 @@ const StaffCard = (props)=>{
          getStaffs()
          
        }
-       const renderFunction = () => {
-        if(props.page === "Table"){
-    return(
-            <tr>
-              <td>{props.firstname}</td>
-              <td>{props.lastname}</td>
-              <td>{props.day}</td>
-              <td>{props.tel}</td>
-              <button onClick={deleteStaff}>Delete</button>
-              <button onClick={updateStaff}>Update</button>
-            </tr>
-        )
-    }else{
-        return(
-            <tr>
+         
+    console.log('props for page : '  + props.page )
+
+    const renderFunction = () => {
+      if(props.page === "Home"){
+        return (
+          <tr>
             <td>{props.firstname}</td>
             <td>{props.lastname}</td>
             <td>{props.day}</td>
             <td>{props.tel}</td>
-            </tr>
+          </tr>
+        )
+      }else{
+        return (<tr>
+            <td>{props.firstname}</td>
+            <td>{props.lastname}</td>
+            <td>{props.day}</td>
+            <td>{props.tel}</td>
+            <button onClick={deleteStaff}>Delete</button>
+            <button onClick={updateStaff}>Update</button>
+          </tr>
+          
         )
       }
-    }
+    }  
+    
     const renderHeadTable = () => {
-        if(props.page === "Table" || props.page === 'table'){
-          console.log(props.table);
-          
-          return (
-            <tr>
-              <th>FirstName</th>
-              <th>Lastname</th>
-              <th>Day</th>
-              <th>Tel.</th>
-              <th>Edit</th>
-            </tr>
-            )
-        }else{
-          return (
+      if(props.page === "Home" || props.page === 'Home'){
+        return (
           <tr>
+          <th>FirstName</th>
+          <th>Lastname</th>
+          <th>Day</th>
+          <th>Tel.</th>
+          
+        </tr>)
+
+      }else{
+        return (
+        <tr>
             <th>FirstName</th>
             <th>Lastname</th>
             <th>Day</th>
             <th>Tel.</th>
+            <th>Edit</th>
           </tr>
-          )
-        }
-    }     
-       
+        )
+    }
     
+  }
     return(
         <div >
           <table id="customers">
-              {renderHeadTable()}
-              {renderFunction()}
+            {renderHeadTable()}
+            {renderFunction()}
           </table>
-    </div>
+        </div>
     )
 
 
 }
+       
+    
+    // return(
+    //     <div >
+    //       <table id='customers' > 
+    //         <tr>
+    //         <td>{props.firstname}</td> 
+    //         <td>{props.lastname}</td>
+    //         <td>{props.day}</td> 
+    //         <td>{props.tel}</td>
+
+    //       <button onClick={deleteStaff}>Delete</button>
+    //       <button onClick={updateStaff}>Update</button>
+
+    //       </tr>
+    //       </table>
+    //   </div>
+    // )
+    // }
+
 export default StaffCard
