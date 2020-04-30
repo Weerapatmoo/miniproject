@@ -1,15 +1,16 @@
 import React, { useEffect }  from 'react';
 import StaffCard from './StaffCard'
-//import './StaffList.css';
+import './StaffList.css';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios'
 
 const StaffList = (props)=>{
     console.log('props page: ' + props.page)
+    
     const staffs = useSelector(state => state.staff);
     const dispatch = useDispatch();
     const getStaffs = async () => {
-        const result = await axios.get(`http://localhost/api/Staffs`)
+        const result = await axios.get(`http://localhost/api/staffs`)
        
         const action = {type:'GET_STAFFS',staff: result.data}
         dispatch(action)

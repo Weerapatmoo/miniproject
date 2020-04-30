@@ -22,10 +22,10 @@ router.route('/staffs')
     .post((req, res) => {
         var staff = {};
         staff.id = staffs.length > 0 ? staffs[staffs.length - 1].id + 1 : 0;
-        staff.Day = req.body.Day
-        staff.Firstname = req.body.Firstname
-        staff.Lastname = req.body.Lastname
-        staff.Tel = req.body.Tel
+        staff.day = req.body.day
+        staff.firstname = req.body.firstname
+        staff.lastname = req.body.lastname
+        staff.tel = req.body.tel
         staffs.push(staff);
         res.json({ message: 'staff created!' })
     })
@@ -39,10 +39,10 @@ router.route('/staffs/:staff_id')
     .put((req, res) => {                               // Update a staff
         let id = req.params.staff_id
         let index = staffs.findIndex(staff => (staff.id === +id))
-        staffs[index].Day = req.body.Day;
-        staffs[index].Firstname = req.body.Firstname;
-        staffs[index].Lastname = req.body.Lastname;
-        staffs[index].Tel = req.body.Tel;
+        staffs[index].day = req.body.day;
+        staffs[index].firstname = req.body.firstname;
+        staffs[index].lastname = req.body.lastname;
+        staffs[index].tel = req.body.tel;
         res.json({ message: 'staff updated!' + req.params.staff_id });
     })
     .delete((req, res) => {                   // Delete a staff

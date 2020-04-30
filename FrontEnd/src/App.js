@@ -4,12 +4,12 @@ import Home from './components/Home'
 import About from './components/About'
 import Table from './components/Table'
 import { Provider } from "react-redux";
-import store from './redux/Store'
+import Store from './redux/Store'
 
 export default function App(props) {
   return (
     <div>
-      <Provider store={store}>
+      <Provider store={Store}>
         <Router>
         <Switch>
         

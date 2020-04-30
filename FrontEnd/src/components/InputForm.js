@@ -1,18 +1,18 @@
 import React from 'react';
-// import './InputForm.css';
+import './InputForm.css';
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
 
-const InputForm = props => {
+const InputForm = (props) => {
     const dispatch = useDispatch();
     const form = useSelector(state => state.form)
-    const Staffs = useSelector(state => state.Staff)
+    const staffs = useSelector(state => state.staff)
 
     const addStaff = async () => {
-        await axios.post(`http://localhost/api/Staffs`, form)
+        await axios.post(`http://localhost/api/staffs`, form)
         dispatch({
-            type: 'ADD_STAFF', Staff: {
-                no: Staffs.length > 0 ? Staffs[Staffs.length-1].no+1 : 0,
+            type: 'ADD_STAFF', staff: {
+                id: staffs.length > 0 ? staffs[staffs.length-1].id+1 : 0,
                 ...form
             }
         })
@@ -24,13 +24,13 @@ const InputForm = props => {
             <div class="input2">
             <table>
                 <h1>Add Staffs</h1>
-                    {form.Firstname} {form.Lastname} {form.Day} {form.Tel} 
+                    {form.firstname} {form.lastname} {form.day} {form.tel} 
                             <tbody>
                                 <tr> 
                                     <td>
                                         <input className='inpt'
                                         type="text"
-                                        onChange={(e) => dispatch({ type: 'CHANGE_FIRSTNAME', Firstname: e.target.value })}    
+                                        onChange={(e) => dispatch({ type: 'CHANGE_FIRSTNAME', firstname: e.target.value })}    
                                         placeholder="FirstName"/>
                                     </td>
                                 </tr>
@@ -38,7 +38,7 @@ const InputForm = props => {
                                     <td>
                                         <input className='inpt'
                                         type="text"
-                                        onChange={(e) => dispatch({ type: 'CHANGE_LASTNAME', Lastname: e.target.value })}
+                                        onChange={(e) => dispatch({ type: 'CHANGE_LASTNAME', lastname: e.target.value })}
                                         placeholder="Lastname"/>  
                                     </td>
                                 </tr>
@@ -46,7 +46,7 @@ const InputForm = props => {
                                     <td>
                                         <input className='inpt'
                                         type="text"
-                                        onChange={(e) => dispatch({ type: 'CHANGE_DAY', Day: e.target.value })}
+                                        onChange={(e) => dispatch({ type: 'CHANGE_DAY', day: e.target.value })}
                                         placeholder="Day"/>   
                                     </td>
                                 </tr>
@@ -55,8 +55,8 @@ const InputForm = props => {
                                     <td>
                                         <input className='inpt'
                                         type="text"
-                                        onChange={(e) => dispatch({ type: 'CHANGE_TEL', Tel: e.target.value })}
-                                        placeholder="Tel"/>   
+                                        onChange={(e) => dispatch({ type: 'CHANGE_TEL', tel: e.target.value })}
+                                        placeholder="Tel"/>  
                                     </td>
                                 </tr>
                                 <tr>

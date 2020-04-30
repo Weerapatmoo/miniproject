@@ -1,11 +1,11 @@
 import React, { useEffect }  from 'react';
-// import './StaffList.css';
+import './StaffList.css';
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
 
 const StaffCard = (props)=>{
     console.log('page: ' + props.page)
-    console.log('my props: ' + props.Firstname)
+    console.log('my props: ' + props.firstname)
     const dispatch = useDispatch();
     const form = useSelector(state => state.form)
 
@@ -21,7 +21,7 @@ const StaffCard = (props)=>{
 
     const deleteStaff = async ()=>{
         await axios.delete(`http://localhost/api/staffs/${props.id}`)
-        dispatch({type:'DELETE_STAFF',no: props.id })
+        dispatch({type:'DELETE_STAFF',id: props.id })
         getStaffs()
           
     }
@@ -29,7 +29,7 @@ const StaffCard = (props)=>{
         await axios.put(`http://localhost/api/staffs/${props.id}`,form)
          dispatch(
              {type:'UPDATE_STAFF',
-             no: props.id,
+             id: props.id,
              staff:{...form, id:  props.id}
          })
          getStaffs()
@@ -39,10 +39,10 @@ const StaffCard = (props)=>{
         if(props.page === "Admin"){
     return(
             <tr>
-              <td>{props.Firstname}</td>
-              <td>{props.Lastname}</td>
-              <td>{props.Day}</td>
-              <td>{props.Tel}</td>
+              <td>{props.firstname}</td>
+              <td>{props.lastname}</td>
+              <td>{props.day}</td>
+              <td>{props.tel}</td>
               <button onClick={deleteStaff}>Delete</button>
               <button onClick={updateStaff}>Update</button>
             </tr>
@@ -50,10 +50,10 @@ const StaffCard = (props)=>{
     }else{
         return(
             <tr>
-            <td>{props.Firstname}</td>
-            <td>{props.Lastname}</td>
-            <td>{props.Day}</td>
-            <td>{props.Tel}</td>
+            <td>{props.firstname}</td>
+            <td>{props.lastname}</td>
+            <td>{props.day}</td>
+            <td>{props.tel}</td>
             </tr>
         )
       }

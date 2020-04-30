@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Login from './Login'
 import auth from '../firebase'; 
 import NavLink from './NavLink';
-import StaffList from './StaffList'
 import StaffCard from './StaffCard';
+
 const Home = () => {
   const [session, setSession] = useState({
     isLoggedIn: false,
@@ -38,20 +38,33 @@ const Home = () => {
   };
   return (
     <div>
-      {session.isLoggedIn ? (
+       {session.isLoggedIn ? (
         // หลัง loginเสร็จ
         <div>
-        <NavLink/>
-        <div>123</div>
-        <StaffCard/>
+          <div>
+            <NavLink/>
+              <div className="has-text-centered">
+              <section class="hero is-danger">
+              <div className="container">
+              <h1 className="title">Home</h1>
+              </div>
+              </section>
+              </div>
+          </div>
+            <div>
+              <StaffCard/>
+              <button onClick={handleLogout}>logout</button>
+            </div>
         </div>
+        
       ) : ( //   ยังไม่ได้ login
         <div>
           <Login setSession={setSession} />
         </div>
+        
       )}
-    
-    </div>
+</div>
+       
   )
 }
 export default Home
