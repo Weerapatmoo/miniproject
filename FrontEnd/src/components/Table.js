@@ -1,5 +1,6 @@
 import React from 'react';
 import NavLink from './NavLink';
+import InputForm from './InputForm'
 
 function Table(){
 return(
@@ -8,7 +9,9 @@ return(
       <div className="has-text-centered">
       <section class="hero is-primary">
         <div className="container">
-          <h1 className="title">Post Page</h1>
+          <h1 className="title">ADD Work schedule</h1>
+          <br/>
+          <InputForm />
         </div>
       </section>
     </div>

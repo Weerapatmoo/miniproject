@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Login from './Login'
-import auth from '../firebase';
+import auth from '../firebase'; 
 import NavLink from './NavLink';
-
+import StaffList from './StaffList'
+import StaffCard from './StaffCard';
 const Home = () => {
   const [session, setSession] = useState({
     isLoggedIn: false,
     currentUser: null,
     errorMessage: null
   });
+  console.log("session: " + session.isLoggedIn)
   useEffect(() => {
     const handleAuth = auth.onAuthStateChanged(user => {
       if (user) {
@@ -39,33 +41,16 @@ const Home = () => {
       {session.isLoggedIn ? (
         // หลัง loginเสร็จ
         <div>
-        <NavLink></NavLink>
-          <span>
-            <h1>Welcome  {session.currentUser && session.currentUser.displayName}</h1>
-            {session.currentUser && session.currentUser.email}
-            <br/>
-            <img
-               width="180px" height="150px"
-              src={session.currentUser && session.currentUser.photoURL}
-            />
-          </span>
-          
-            <br/>
-           
-            <button  
-               
-                onClick={handleLogout}>logout</button>
-          <h1>Hello</h1>
+        <NavLink/>
+        <div>123</div>
+        <StaffCard/>
         </div>
-
-      ) : (
-        //   ยังไม่ได้ login
-          <div>
+      ) : ( //   ยังไม่ได้ login
+        <div>
           <Login setSession={setSession} />
-          
-           </div>
-        )}
-
+        </div>
+      )}
+    
     </div>
   )
 }
